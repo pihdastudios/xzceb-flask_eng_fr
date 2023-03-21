@@ -22,12 +22,10 @@ def englishToFrench(englishText : str):
     translation = language_translator.translate(
         text=englishText,
         model_id='en-fr').get_result()
-    return translation
+    return translation['translations'][0]['translation']
 
 def frenchToEnglish(frenchText : str):
     translation = language_translator.translate(
         text=frenchText,
         model_id='fr-en').get_result()
-    return translation
-
-# print(englishToFrench("who am i")['translations'][0]['translation'])
+    return translation['translations'][0]['translation']

@@ -3,17 +3,19 @@ from translator import englishToFrench, frenchToEnglish
 
 class Tests(unittest.TestCase):
     def testNullEnToFr(self):
-        englishToFrench(None)
-
-    def testNullFrToEn(self):
-        frenchToEnglish(None)
+        self.assertRaises(ValueError, englishToFrench, None)
 
     def testEnToFr(self):
-        actual = englishToFrench("Hello")['translations'][0]['translation']
+        actual = englishToFrench("Hello")
         expected = "Bonjour"
         self.assertEqual(actual, expected)
+        self.assertNotEqual(actual, "Hello")
+
+    def testNullFrToEn(self):
+        self.assertRaises(ValueError, frenchToEnglish, None)
 
     def testFrToEn(self):
-        actual = frenchToEnglish("Bonjour")['translations'][0]['translation']
+        actual = frenchToEnglish("Bonjour")
         expected = "Hello"
         self.assertEqual(actual, expected)
+        self.assertNotEqual(actual, "Bonjour")
